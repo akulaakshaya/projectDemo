@@ -106,7 +106,8 @@ public class adminOrderController {
 
 			System.out.println(processedBy);
 			if (order.getOrdr_processedby() == null) {
-				htmlContent.append("<button  class=\"btn-btn-danger " + "\">Unprocessed</button>");
+				htmlContent.append("<button  class=\"btn-btn-danger " + " data-order-id=\"").append(order.getId())
+						.append("\">Unprocessed</button>");
 			} else {
 				htmlContent.append("<button class=\"btn " + buttonColor + "\">").append(order.getOrdr_processedby())
 						.append("</button>");
@@ -118,6 +119,14 @@ public class adminOrderController {
 		htmlContent.append("</tbody>\n").append("</table>\n").append("</div>\n");
 
 		return htmlContent.toString();
+	}
+
+	@GetMapping("/processOrder")
+	@ResponseBody
+	public String processOrders(@RequestParam("orderId") String o_id, Model model) {
+		List<orderModel> orders = od.getAllOrders();
+		model.addAttribute("orders", orders);
+		return generateOrderListTable(orders);
 	}
 
 }
