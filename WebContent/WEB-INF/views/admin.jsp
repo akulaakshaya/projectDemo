@@ -157,7 +157,20 @@
         }
     </script>
     <script>
- 
+ 	function processOrder(var orderId){
+ 	 $.ajax({
+	      url: "processOrder",
+	      method: 'GET',
+	      data: { orderId: orderId },
+	      success: function(response) {
+	       displayOrders();
+	      },
+	      error: function(xhr, status, error) {
+	        console.log('AJAX Error: ' + error);
+	      }
+	    });
+ 	}
+    
     function displayOrders(){
     	 $.ajax({
     	      url: "listOrders",
@@ -176,6 +189,13 @@
 	   console.log("entered orders");
 	    displayOrders();
     });
+    $(document).on('click', '.btn-btn-danger', function(event) {
+	    event.preventDefault();
+	    var orderId = $(this).data('order-id');
+	   console.log(orderId+"processing");
+	   processOrder(orderId);
+    
+    
     </script>
 </head>
 <body>
