@@ -121,7 +121,33 @@
     background-color: rgb(56, 189, 149);  
   }
 </style>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function validateEmail()
+{
+	   var email = $("#email").val();
+	   console.log("email in verification "+email);
+	   $.ajax({
+	    type: "POST",
+	    url: "emailValid",
+	    data: { email: email },
+	    success: function(response) {
+	      console.log("response of email verification " + response);
+	         if (response == "no") {
+	    	 $("#emailVerify").text("Please enter valid email");
+	    	
+	    	setTimeout(function() {
+	         $("#emailVerify").text("");
+	       }, 2000);
+	    	$("#email").val("");} 
+	       //console.log("signin email verification response "+response);
+	         
+	      },error: function() {
+	            alert("Error occurred. Please try again later.");
+       }
+     });
+}
+</script>
 </head>
 <body>
  <div class="container">
@@ -130,8 +156,8 @@
           <div class="content-holder">
               <h2>Hello!</h2>
              
-              <button class="button-1" onclick="usersignin()">USER</button>
-              <button class="button-2" onclick="adminsignin()">ADMIN</button>
+              <button class="button-1" >USER</button>
+              
           </div>
       </div>
 
@@ -140,8 +166,9 @@
       <div class="box-2">
           <div class="userlogin-form-container" align="center">
               <h1>Login Form</h1>
+              <div id="emailVerify"></div>
               <form action="signOk">
-              <input type="email" placeholder="Email" name="em" class="input-field">
+              <input type="email" placeholder="Email" name="em" id="email" class="input-field" onblur="validateEmail()">
               <br><br>
               <input type="password" placeholder="Password" class="input-field" name="ps">
               <br><br>
@@ -154,18 +181,7 @@
           </div>
           </div>
 
-<!--Create Container for Signup form-->
-      <div class="adminlogin-form-container">
-          <h1>Login Form</h1>
-          <form action="adminlogin">
-          <input type="email" placeholder="Email" class="input-field">
-          <br><br>
-          <input type="password" placeholder="Password" class="input-field">
-          <br><br>
-          <button class="login-button" type="submit">Sign In</button>
-          </form>
-          
-      </div>
+
 
 </div>
       </div>
@@ -182,15 +198,7 @@ function usersignin()
 
 };
 
-function adminsignin()
-{
-    document.querySelector(".userlogin-form-container").style.cssText = "display: block;";
-    document.querySelector(".adminlogin-form-container").style.cssText = "display: none;";
-    document.querySelector(".container").style.cssText = "background: linear-gradient(to bottom, rgb(6, 108, 224),  rgb(14, 48, 122));";
-    document.querySelector(".button-2").style.cssText = "display: none;";
-    document.querySelector(".button-1").style.cssText = "display: block;";
 
-}
 </script>
 </body>
 </html>

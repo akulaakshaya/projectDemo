@@ -65,7 +65,7 @@
                     <input id="adminRole" type="text" class="form-control" name="designation" value="<%= adminRole %>" >
                 </p>
                 
-                <p class="card-text">Role:
+                <p class="card-text">Password:
                     <input id="adminPassword" type="text" class="form-control" name="password" value="<%= password %>" >
                 </p>
                 

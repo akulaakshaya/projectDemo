@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -151,7 +152,7 @@
       
       <div class="form-group">
         <label for="pincode">Pincode</label>
-        <input type="text" id="pincode" name="custPincode" required>
+        <input type="number" id="pincode" name="custPincode" required>
       </div>
       
       <div class="form-group">
@@ -161,7 +162,7 @@
       
       <div class="form-group">
         <label for="spincode">ShipmentPincode</label>
-        <input type="text" id="spincode" name="custSpincode" required>
+        <input type="number" id="spincode" name="custSpincode" required>
       </div>
       
       <div class="form-group">
@@ -187,6 +188,7 @@
   </div>
 </body>
 </html>
+
 
 
 

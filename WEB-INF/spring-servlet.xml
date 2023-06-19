@@ -26,9 +26,9 @@
     </bean>
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	    <property name="driverClassName" value="org.postgresql.Driver" />
-	     <property name="url" value="jdbc:postgresql://192.168.110.48:5432/plf_training" />
-	    <property name="username" value="plf_training_admin" />
-	    <property name="password" value="pff123" />
+	    <property name="url" value="jdbc:postgresql://LocalHost:5432/postgres" />
+	    <property name="username" value="postgres" />
+	    <property name="password" value="Akshaya@2001" />
 	</bean>
 
 	 <bean id="entityManagerFactory" 
@@ -43,11 +43,6 @@
 		</property>
 	</bean>
 
-      <!-- EntityManager configuration -->
-    <bean id="entityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
-        <property name="entityManagerFactory" ref="entityManagerFactory" />
-    </bean>
-     
 	<!-- Transactions -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
@@ -60,35 +55,41 @@
     <bean id="customerdao" class="eStoreProduct.DAO.customerDAOImp" autowire="byName"/> 
     
     
-        <!-- byName example -->
-    <bean id="cartdao" class="eStoreProduct.DAO.cartDAOImp" autowire="byName"/> 
     
-       <!-- byName example -->
+    <!-- byName example -->
+    <!-- <bean id="cartdao" class="eStoreProduct.DAO.cartDAOImp" autowire="byName"/>  -->
+    
+    
+        <!-- byName example -->
     <bean id="admindao" class="eStoreProduct.DAO.adminDAOImp" autowire="byName"/> 
     
     <!-- byName example -->
     <bean id="ord" class="eStoreProduct.DAO.OrderDAOImp" autowire="byName"/> 
     
      <!-- byName example -->
-    <bean id="omd" class="eStoreProduct.model.orderModel" autowire="byName"/>
+    <bean id="omd" class="eStoreProduct.model.orderModel" autowire="byName"/> 
     
-     <!-- byName example -->
-    <bean id="psm" class="eStoreProduct.model.productStockModel" autowire="byName"/> 
-     <!-- byName example -->
-    <bean id="hsnm" class="eStoreProduct.model.HSNCodeModel" autowire="byName"/> 
-     <!-- byName example -->
-    <bean id="pcm" class="eStoreProduct.model.productCategoryModel" autowire="byName"/> 
-     <!-- byName example -->
-    <bean id="pm" class="eStoreProduct.model.productsModel" autowire="byName"/>  
-    
-    <bean id="stockdao" class="eStoreProduct.DAO.stockSummaryDAOImp" autowire="byName"/>
-    
-    <!--   Configure the ProductDAO bean -->
-   <!--  <bean id="productDAO" class="eStoreProduct.DAO.ProductDAOImp" /> -->
-  
-  	 <bean id="opmd" class="eStoreProduct.model.orderProductsModel" autowire="byName"/> 
-  	 <bean id="orderproductdao" class="eStoreProduct.DAO.orderProductDAOImp" autowire="byName"/>
+     <bean id="opmd" class="eStoreProduct.model.orderProductsModel" autowire="byName"/> 
     
     
+       <bean id="stockdao" class="eStoreProduct.DAO.stockSummaryDAOImp" autowire="byName"/>
+       
+       
+    	<bean id="orderproductdao" class="eStoreProduct.DAO.orderProductDAOImp" autowire="byName"/>
+    
+    <!-- Configure the ProductDAO bean -->
+   <!--  <bean id="productdao" class="eStoreProduct.DAO.ProductDAOImp" autowire="byName" /> -->
+    
+  <!--   <bean id="catDAO" class="eStoreProduct.DAO.CategoryDAO" />  -->
+    
+    
+
+    <!-- Configure the ProductService bean -->
+    <!-- <bean id="productService" class="eStoreProduct.ProductsService.ProductService">
+        <constructor-arg ref="productDAO" />
+    </bean> -->
+   <!--  <bean id="catService" class="eStoreProduct.ProductsService.CategoryService">
+        <constructor-arg ref="catDAO" />
+    </bean> -->
     
 </beans>

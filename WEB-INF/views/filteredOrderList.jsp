@@ -44,7 +44,7 @@
                 <td><%= order.getPaymentStatus() %></td>
                 <td><%= order.getShippingAddress() %></td>
                 <td><%= order.getShippingPincode() %></td>
-                <td><%= order.getShipmentStatus() %></td>
+                <td><%= order.getShipment_status() %></td>
                 <td><%= order.getShipmentDate() %></td>
                 <td>
                     <% if (order.getOrdr_processedby() == null) { %>
