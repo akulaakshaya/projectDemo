@@ -54,7 +54,8 @@
         <tbody>
         <% List<orderModel> orders=(List<orderModel>)request.getAttribute("orders"); %>
         <% for (orderModel order : orders) { 
-            if (order.getOrdr_processedby() != null) { %>
+            if (order.getOrdr_processedby() != null) { 
+            if((order.getShipment_status().equalsIgnoreCase("delivered"))){%>
                 <tr>
                     <td class="orderId" data-order-id="<%= order.getId() %>"><%= order.getId() %></td>
 
@@ -65,10 +66,10 @@
                     <td><%= order.getGst() %></td>
                     <td><%= order.getShipmentDate() %></td>
                     <td>
-                        <button class="btn btn-success update-button" data-bs-toggle="modal" data-bs-target="#updateModal" data-order-id="<%= order.getId() %>">Update</button>
+                        <button class="btn btn-success update-button" data-bs-toggle="modal" data-bs-target="#updateModal" data-order-id="<%= order.getId() %>">View</button>
                     </td>
                 </tr>
-        <% } } %>
+        <% }} } %>
         </tbody>
     </table>
 </div>
@@ -78,7 +79,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel">Update Order Status</h5>
+                <h5 class="modal-title" id="updateModalLabel">view Order Products</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

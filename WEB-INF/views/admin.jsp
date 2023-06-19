@@ -206,6 +206,29 @@
     <script>
     
     
+    
+    
+    <!-- ADMIN PROFILE -->
+    
+    $(document).on('click', '.profile-link', function(event) {
+	    event.preventDefault();
+	   console.log("entered admin profile");
+	   displayProfile();
+    });
+    
+    function displayProfile(){
+    	 $.ajax({
+    	      url: "displayAdminProfile",
+    	      method: 'GET',
+    	      success: function(response) {
+    	        $('#content').html(response); // Set the response HTML as the inner HTML of the select element
+    	      },
+    	      error: function(xhr, status, error) {
+    	        console.log('AJAX Error: ' + error);
+    	      }
+    	    });
+    }
+    
   <!--OrdersLink--> 
     
     
@@ -557,7 +580,7 @@ console.log("in viewing  shipped Orders");
         <h2>Dashboard</h2>
         <ul>
             
-            <li><a href="#">Profile</a></li>
+            <li><a href="#" class="profile-link">Profile</a></li>
             <li><a href="#" class="orders-link">Orders</a></li>
 			<li><a href="#" class="Shipments-SubOptions">Shipments</a>
 				 <ul class="sub-menu" >

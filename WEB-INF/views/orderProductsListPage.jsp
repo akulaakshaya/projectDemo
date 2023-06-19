@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="eStoreProduct.model.orderModel, eStoreProduct.model.orderProductsModel, java.util.List" %>    
+<%@ page import="eStoreProduct.model.orderModel, eStoreProduct.model.orderProductsModel,eStoreProduct.DAO.OrderDAO, java.util.List" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,10 +22,12 @@
             </tr>
         </thead>
         <tbody>
+        <%int count=0; %>
         <% List<orderProductsModel> orderproducts = (List<orderProductsModel>) request.getAttribute("orderproducts"); %>
         <% for (orderProductsModel op : orderproducts) {
         	if(op != null) { %>
             <tr>
+            
                <td id="orderId" value="<%= op.getOrdr_id() %>"><%= op.getOrdr_id() %></td>
                 <td id="productId" value="<%= op.getProd_id() %>"><%= op.getProd_id() %></td>
                 <td><%= op.getOrpr_qty() %></td>
@@ -33,7 +35,7 @@
                 <td><%= op.getOrpr_price() %></td>
                 <td><%= op.getShipment_status() %></td>
                 <td >
-                	<%if(!(op.getShipment_status().equalsIgnoreCase("delivered")) && (!(op.getShipment_status().equalsIgnoreCase("cancelled"))) ){ %>
+                	<%if(!(op.getShipment_status().equalsIgnoreCase("delivered")) && (!(op.getShipment_status().equalsIgnoreCase("cancelled"))) ){count=count+1; %>
                     <select id="statusSelect">
                         <option value="Dispatched">Dispatched</option>
                         <option value="OutForDelivery">Out For Delivery</option>
@@ -48,7 +50,14 @@
                 </td>
                 
             </tr>
-        <% }} %>  
+        <% }
+        	if(count==0){
+            	OrderDAO orderdao;
+            	orderdao.updateOrderShipmentStatus(op.getOrdr_id(), "DELIVERED")
+            }
+        }
+        
+        %>  
         </tbody>
     </table> 
 </div>

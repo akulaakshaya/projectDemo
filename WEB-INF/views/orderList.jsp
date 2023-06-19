@@ -51,7 +51,7 @@
         </thead>
         <tbody>
          <% List<orderModel> orders=(List<orderModel>)request.getAttribute("orders"); %>
-            <% for (orderModel order : orders) { %>
+            <% for (orderModel order : orders) {%>
             <tr>
                 <td><%= order.getId() %></td>
                 <td><%= order.getOrdr_cust_id() %></td>

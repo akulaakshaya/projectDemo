@@ -151,7 +151,7 @@
       
       <div class="form-group">
         <label for="pincode">Pincode</label>
-        <input type="number" id="pincode" name="custPincode" required>
+        <input type="text" id="pincode" name="custPincode" required>
       </div>
       
       <div class="form-group">
@@ -161,7 +161,7 @@
       
       <div class="form-group">
         <label for="spincode">ShipmentPincode</label>
-        <input type="number" id="spincode" name="custSpincode" required>
+        <input type="text" id="spincode" name="custSpincode" required>
       </div>
       
       <div class="form-group">
