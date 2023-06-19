@@ -1,5 +1,13 @@
 # projectDemo
 
+select * from slam_ausr;
+alter table slam_ausr alter column ausr_pwd  type varchar(500);
+update slam_ausr set ausr_pwd='9fe0f07b81e830ecaa9af5fb7963814809c98d393dd67c4599b0d2526e746a6f' where ausr_id=1;
+SELECT * FROM slam_ausr WHERE ausr_email ='akshayavarma39@gmail.com' AND ausr_pwd ='9fe0f07b81e830ecaa9af5fb7963814809c98d393dd67c4599b0d2526e746a6f';
+
+
+
+
 CREATE TABLE slam_ProductCategories ( prct_id SERIAL PRIMARY KEY, prct_title VARCHAR, prct_desc TEXT );
 select * from slam_ProductCategories
 insert into slam_ProductCategories(prct_title,prct_desc) values('Computers and Laptops','Computers are Electronic devices that process data and perform tasks based on instructions wherease Laptops are Portable computers that offer the convenience of mobility and functionality of a desktop computer in a compact form')
