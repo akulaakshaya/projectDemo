@@ -55,7 +55,7 @@
         <% List<orderModel> orders=(List<orderModel>)request.getAttribute("orders"); %>
         <% for (orderModel order : orders) { 
             if (order.getOrdr_processedby() != null) { 
-            if(!(order.getShipment_status().equalsIgnoreCase("delivered"))){%>
+           %>
                 <tr>
                     <td class="orderId" data-order-id="<%= order.getId() %>"><%= order.getId() %></td>
 
@@ -69,7 +69,7 @@
                         <button class="btn btn-success" id="update-button" data-bs-toggle="modal" data-bs-target="#updateModal" data-order-id="<%= order.getId() %>">Update</button>
                     </td>
                 </tr>
-        <% }} } %>
+        <% }}  %>
         </tbody>
     </table>
 </div>

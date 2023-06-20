@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="eStoreProduct.model.custCredModel" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,17 +7,21 @@
     <title>Payment Page</title>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
+
 <body>
     <h1>Payment Page</h1>
 
     <button id="rzp-button1" onclick="openCheckout('${orderId}')">Pay</button>
-
+<%                custCredModel cust = (custCredModel) session.getAttribute("customer") ;%>
     <form action="invoice" method="POST" name="razorpayForm">
-        <input id="razorpay_payment_id" type="hidden" name="razorpay_payment_id" />
-        <input id="razorpay_order_id" type="hidden" name="razorpay_order_id" />
-        <input id="razorpay_signature" type="hidden" name="razorpay_signature" />
-                <input id="razorpay_amount" type="hidden" name="razorpay_amounte" />
+    
+        <input id="razorpay_payment_id" type="hidden" name="paymentReference" />
+        <input id="razorpay_order_id" type="hidden" name="billNumber" />
+		<input id="razorpay_amount" type="hidden" name="total" />
 
+		<input id="shippingAddress" type="hidden" name="shippingAddress" value="<%=cust.getCustSAddress()%>" />
+		<input id="customerId" type="hidden" name="customerId" value="<%=cust.getCustId()%>" />
+		
     </form>
 
     <script>
@@ -35,7 +40,7 @@
                 },
                 notes: {
                     address: "Hello World",
-                    merchant_order_id: "12312321"
+                    merchant_order_id: orderId
                 },
                 theme: {
                     color: "#F37254"
@@ -44,8 +49,8 @@
                 handler: function (response) {
                     document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
                     document.getElementById('razorpay_order_id').value = orderId;
-                    document.getElementById('razorpay_signature').value = response.razorpay_signature;
-                    document.getElementById('razorpay_amount').value = response.razorpay_amount;
+                   // document.getElementById('razorpay_signature').value = response.razorpay_signature;
+                    document.getElementById('razorpay_amount').value =${amt};
 
                     document.razorpayForm.submit();
                 },

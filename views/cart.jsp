@@ -12,8 +12,19 @@
     function buynow()
     {
   	  console.log("buy now");
+  	 $.ajax({
+         url: 'buycartitems',
+         method: 'GET',
+         success: function(response) {
+             console.log("response of updateqty  "+response);
+             $('#payment').html(response); // Set the response HTML as the inner HTML of the cart items element
+         },
+         error: function(xhr, status, error) {
+             console.log('AJAX Error: ' + error);
+         }
+     });
 
-  	  	window.location.href="buycartitems";  
+  	  	//window.location.href="buycartitems";  
   	    }
     function updateQuantity(input) {
         var quantity = input.value;
@@ -28,6 +39,21 @@
             success: function(response) {
                 console.log("response of updateqty  "+response);
                 $("#cst").html("Total Cost: " + response);
+            },
+            error: function(xhr, status, error) {
+                console.log('AJAX Error: ' + error);
+            }
+        });
+    }
+    function chechValidity(){
+    	var pincode=document.getElementById("pincode").value;
+    	$.ajax({
+            url: 'checkPincodeValidity',
+            method: 'POST',
+            data: { pincode:pincode },
+            success: function(response) {
+                console.log("response of updateqty  "+response);
+                window.alert(response);
             },
             error: function(xhr, status, error) {
                 console.log('AJAX Error: ' + error);
@@ -71,9 +97,14 @@
             %>
         </div>
     </div>
+    
     <div align="center" container mt-3">
+    <div id="checkpincode">
+    <input type="number" id="pincode" name="pincode">
+    <input type="button" onclick="chechValidity()" value="Check">
+    </div>
         <div id="cst">
-            <p align="center">Total Cost=<%=totalcost %></p>
+            <p align="center">Total Cost=<%=request.getAttribute("cartcost") %></p>
         </div>
         <button class="btn btn-primary BuyNow" onclick="buynow()">Place Order</button>
     </div>

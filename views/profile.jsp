@@ -11,6 +11,9 @@
     * {
         box-sizing: border-box;
     }
+    .input-width {
+  width: 100px;
+}
     
     body {
         font-family: Arial, sans-serif;
@@ -218,6 +221,186 @@
     }
   </style>
 </head>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+<script>
+
+function addToCart(productId) {
+	
+	  console.log("Add to cart called");
+
+		  $.ajax({
+    		    url: "addToCart",
+    		    method: 'GET',
+    		    data: { productId: productId },
+    		    success: function(response) {
+    		    	if(response.success)
+    		    		{
+    		    		var bt='<button class="removeFromCart" data-product-id="+ productId+">Remove from Cart</button>';
+
+    		    		$(".addToCartButton").html(bt);
+    		    		}
+    		    },
+    		    error: function(xhr, status, error) {
+    		      console.log('AJAX Error: ' + error);
+    		    }
+    		  });
+	}
+
+  function addToWishlist(productId) {
+	 
+	  $.ajax({
+	    url: "addToWishlist",
+	    method: 'GET',
+	    data: {productId: productId },
+	    success: function(response) {
+	      $('#display').html(response); // Set the response HTML as the inner HTML of the cart items element
+	    },
+	    error: function(xhr, status, error) {
+	      console.log('AJAX Error: ' + error);
+	    }
+	  });
+  }
+  
+  function removeFromCart(productId) {
+	  console.log("Remove from cart called");
+	  $.ajax({
+	    url: "removeFromCart",
+	    method: 'GET',
+	    data: { productId: productId },
+	    success: function(response) {
+	      showCart(); // Set the response HTML as the inner HTML of the cart items element
+	    },
+	    error: function(xhr, status, error) {
+	      console.log('AJAX Error: ' + error);
+	    }
+	  });
+	}
+  
+  function removeFromWishlist(productId) {
+	  console.log("Remove from wishlist called");
+	  $.ajax({
+	    url: "removeFromWishlist",
+	    method: 'GET',
+	    data: { productId: productId },
+	    success: function(response) {
+	      showCart(); // Set the response HTML as the inner HTML of the cart items element
+	    },
+	    error: function(xhr, status, error) {
+	      console.log('AJAX Error: ' + error);
+	    }
+	  });
+	}
+  
+  
+  function showCart() {
+	  console.log("show cart called");
+
+	  $.ajax({
+	    url: "cartItems",
+	    method: 'GET',
+	    data:{userId: 1},
+	    success: function(response) {
+	      $('#edit').html(response); // Set the response HTML as the inner HTML of the cart items element
+	    },
+	    error: function(xhr, status, error) {
+	      console.log('AJAX Error: ' + error);
+	    }
+	  });
+	}
+  
+  function showWishlist() {
+	  $.ajax({
+	    url: "wishlistItems",
+	    method: 'GET',
+	    data:{userId: 1},
+	    success: function(response) {
+	  	  console.log("profile wishlist");
+
+	      $('#edit').html(response); 
+	    },
+	    error: function(xhr, status, error) {
+	      console.log('AJAX Error: ' + error);
+	    }
+	  });
+  }
+  function buynow()
+  {
+	  console.log("buy now");
+	        var notAvailable = $(".not-available");
+	        if (notAvailable.length > 0) {
+	            alert("Please check the availability of all products before placing the order!");
+	        }   
+	        else{
+	  	window.location.href="buycartitems";  
+	        }
+	    }
+	
+$(document).ready(function() {
+	$(document).on('click', '.buyid', function(event) {
+		    event.preventDefault();
+buynow()
+});
+	  
+	  $(document).on('click', '.addToCartButton', function(event) {
+	    event.preventDefault();
+	    var productId = $(this).data('product-id');
+	    console.log(productId);
+	    addToCart(productId);
+	  });
+	  
+	  $(document).on('click', '.removeFromCart', function(event) {
+	    event.preventDefault();
+	    var productId = $(this).data('product-id');
+	    console.log(productId);
+	    removeFromCart(productId);
+	  });
+	  
+	  $(document).on('click', '.addToWishlistButton', function(event) {
+		    event.preventDefault();
+		    var productId = $(this).data('product-id');
+		    console.log(productId);
+		    addToWishlist(productId);
+		});
+	  
+	  $(document).on('click', '.removeFromWishlist', function(event) {
+	    event.preventDefault();
+	    var productId = $(this).data('product-id');
+	    console.log(productId);
+	    removeFromWishlist(productId);
+	  });
+	  
+
+	  $('#cart-button').click(function() {
+	      showCart();
+	  });
+	  $('#Wishlist-button').click(function() {
+	      showWishlist();
+	  });
+});
+</script>
+<script>
+$(document).on('click', '.checkCustomerOrders', function(event) {
+    event.preventDefault();
+   console.log("entered customer orders profile");
+   displayProfile();
+});
+
+function displayProfile(){
+	 $.ajax({
+	      url: "CustomerOrdersProfile",
+	      method: 'GET',
+	      success: function(response) {
+	        $('#content').html(response); // Set the response HTML as the inner HTML of the select element
+	      },
+	      error: function(xhr, status, error) {
+	        console.log('AJAX Error: ' + error);
+	      }
+	    });
+}
+
+</script>
 <body>
      <div class="sidebar">
          <div class="user-info">
@@ -225,10 +408,9 @@
                <h1>Hey! ${cust != null ? cust.custName : ""}</h1>
          </div>
          <ul>                
-                <li><a href="#">&#128142; Orders</a></li>
-                <li><a href="#">&#128722; Cart</a></li>
-                <li><a href="#">&#10084; WishList</a></li>
-                <li><a href="logout">LogOut</a></li>
+                <li><a href="#" class="checkCustomerOrders">&#128142; Orders</a></li>      <li><button type="button" id="cart-button" class="btn btn-primary" style="background-color: navy; color: white; font-weight: bold;">Cart</button></li>
+             <li><button type="button" id="Wishlist-button" class="btn btn-primary" style="background-color: navy; color: white; font-weight: bold;">Wishlist</button></li>
+    <li><a href="logout">LogOut</a></li>
                 <li><a href="loggedIn">Home</a></li>
             </ul>
      </div>
@@ -285,62 +467,7 @@
         </div>
   </div>
   
-        <%-- <h1>Hey! ${cust != null ? cust.custName : ""}</h1>
-        <nav>
-            <ul>
-                <li><a href="loggedIn">Home</a></li>
-                <li><a href="#">&#128142; Orders</a></li>
-                <li><a href="#">&#x1F381; Cupons</a></li>
-                <li><a href="#">&#128722; Cart</a></li>
-                <li><a href="#">&#10084; WishList</a></li>
-                <li><a href="logout">LogOut</a></li>
-            </ul>
-        </nav>
-    <main>
-         <div id="edit">
-            <h1>Customer Profile</h1>
-            <table>
-                <tr>
-                    <th>Customer ID</th>
-                    <td>${cust != null ? cust.custId : ""}</td>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <td>${cust != null ? cust.custName : ""}</td>
-                </tr>
-                <tr>
-                    <th>Mobile</th>
-                    <td>${cust != null ? cust.custMobile : ""}</td>
-                </tr>
-                <tr>
-                
-                    <th>Location</th>
-                    <td>${cust != null ? cust.custLocation : ""}</td>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                    <td>${cust != null ? cust.custEmail : ""}</td>
-                </tr>
-                <tr>
-                    <th>Address</th>
-                    <td>${cust != null ? cust.custAddress : ""}</td>
-                </tr>
-                <tr>
-                    <th>Shipping Address</th>
-                    <td>${cust != null ? cust.custSAddress : ""}</td>
-                </tr>
-                <tr>
-                    <th>Pincode</th>
-                    <td>${cust != null ? cust.custPincode : ""}</td>
-                </tr>
-                <tr>
-                    <th>Last Login Date</th>
-                    <td>${cust != null ? cust.custLastLoginDate : ""}</td>
-                </tr>
-            </table> 
-            <button onclick="editprofile()">EDIT-PROFILE</button> 
-        </div>
-    </main> --%>
+     
     <script>
 function editprofile() {
     var ele = document.getElementById("edit");

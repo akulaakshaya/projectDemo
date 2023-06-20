@@ -192,7 +192,8 @@ nav ul li:not(:last-child) {
       }
 
       function addToWishlist(productId) {
-    	  <% if (!(Boolean) request.getAttribute("fl")) { %>
+
+    	  <% if (session.getAttribute("customer")==null) { %>
     	    window.location.href = "signIn";
     	 <% }
           else
@@ -260,7 +261,7 @@ nav ul li:not(:last-child) {
       }
 
       function showWishlist() {
-    	  <% if (!(Boolean) request.getAttribute("fl")) { %>
+    	  <% if (session.getAttribute("customer")==null) { %>
   	    window.location.href = "signIn";
   	 <% }
         else
@@ -437,7 +438,7 @@ nav ul li:not(:last-child) {
       <!--  <li><a href="cartDisplay" class="btn btn-primary" style="background-color: navy; color: white; font-weight: bold;">Cart</a></li> -->
        <li><button type="button" id="Wishlist-button" class="btn btn-primary" style="background-color: navy; color: white; font-weight: bold;">Wishlist</button></li>
       <li class="profile-dropdown">
-  <% if (!(Boolean) request.getAttribute("fl")) { %>
+  <% if (session.getAttribute("customer")==null) { %>
     <i class="fas fa-user-shield"></i>
     <div class="dropdown-content">
       <a href="signUp" style="background-color: navy; color: white; font-weight: bold;">Sign Up</a>
@@ -455,7 +456,7 @@ nav ul li:not(:last-child) {
     </ul>
   </nav>
 </header>
-  
+ <div id="payment"> 
   <div class="search-bar">
     <form>
       <input type="text" placeholder="Search...">
@@ -530,5 +531,6 @@ nav ul li:not(:last-child) {
     setInterval(nextSlide, 3000); // Change slide every 3 seconds
   });
 </script>
+</div>
 </body>
 </html>

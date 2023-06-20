@@ -137,7 +137,7 @@ function dis(){
             <th>Pin To</th>
             <th>Surcharge</th>
             <th>Price Waiver</th>
-            <th          </th>
+            <th >         </th>
         </tr>
         <%-- Iterate over the list of regions and generate table rows --%>
         <%
