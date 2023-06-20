@@ -1,4 +1,51 @@
 # projectDemo
+CREATE OR REPLACE FUNCTION update_order_shipment_status() RETURNS TRIGGER AS $$
+DECLARE
+    shipment_status_exists boolean := true;
+    shipment_status varchar(50);
+    order_id INTEGER;
+BEGIN
+    -- Get the order_id for the updated order product
+    order_id := NEW.ordr_id;
+
+    -- Check if all shipment statuses for the order_id are either "cancelled" or "delivered"
+    FOR shipment_status IN (
+        SELECT DISTINCT orpr_shipment_status
+        FROM slam_orderproducts
+        WHERE ordr_id = order_id
+    ) LOOP
+        IF shipment_status != 'cancelled' AND shipment_status != 'delivered' THEN
+            shipment_status_exists := false;
+            EXIT;
+        END IF;
+    END LOOP;
+
+    -- Update the shipment status in slam_orders table if all shipment statuses are valid
+    IF shipment_status_exists THEN
+        UPDATE slam_orders
+        SET ordr_shipment_status = 'delivered'
+        WHERE ordr_id = order_id;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER update_order_shipment_trigger
+AFTER INSERT OR UPDATE ON slam_orderproducts
+FOR EACH ROW
+EXECUTE FUNCTION update_order_shipment_status();
+
+
+
+
+
+
+
+
+
+
 
 select * from slam_ausr;
 alter table slam_ausr alter column ausr_pwd  type varchar(500);
