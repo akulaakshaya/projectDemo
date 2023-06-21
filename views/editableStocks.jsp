@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="eStoreProduct.model.stockSummaryModel,java.util.List" %>
+<%@ page import="eStoreProduct.model.admin.output.stockSummaryModel,java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,18 +37,18 @@
     
         <tr>
         
-            <td name="prod_id"><%= stock.getProd_id() %></td>
-            <td><%= stock.getProd_title() %></td>
-            <td><%= stock.getProd_prct_id() %></td>
+            <td name="prod_id"><%=stock.getId()%></td>
+            <td><%= stock.getTitle() %></td>
+            <td><%= stock.getProductCategory() %></td>
             <td>
-                <input type="text" id="prodGstcId-input" name="prod_gstc_id" value="<%= stock.getProd_gstc_id() %>">
+                <input type="text" id="prodGstcId-input" name="prod_gstc_id" value="<%= stock.getHsnCode() %>">
             </td>
-            <td><%= stock.getProd_brand() %></td>
+            <td><%= stock.getBrand() %></td>
             <td>
-                <input type="text" id="imageUrl-input" name="image_url" value="<%= stock.getImage_url() %>">
+                <input type="text" id="imageUrl-input" name="image_url" value="<%= stock.getImageUrl() %>">
             </td>
             <td>
-                <input type="text" id="prodDesc-input" name="prod_desc" value="<%= stock.getProd_desc() %>">
+                <input type="text" id="prodDesc-input" name="prod_desc" value="<%= stock.getDescription() %>">
             </td>
             <td>
                 <input type="text" id="reorderlevel-input" name="reorderlevel" value="<%= stock.getReorderlevel() %>">
@@ -58,18 +58,18 @@
             <td><%= stock.getIgst() %></td>
             <td><%= stock.getCgst() %></td>
             <td><%= stock.getGst() %></td>
-            <td><%= stock.getProd_price() %></td>
+            <td><%= stock.getPrice() %></td>
             <td>
-                <input type="text" id="prodStock-input" name="prod_stock" value="<%= stock.getProd_stock() %>">
+                <input type="text" id="prodStock-input" name="prod_stock" value="<%= stock.getStock() %>">
             </td>
             <td>
-                <input type="text" id="prodMrp-input"  name="prod_mrp" value="<%= stock.getProd_mrp() %>">
+                <input type="text" id="prodMrp-input"  name="prod_mrp" value="<%= stock.getMrp() %>">
             </td>
             <td>
-                <button  id="edit-button" class="btn btn-success" data-gstc-id="<%= stock.getProd_gstc_id() %>"
-                    data-imageurl-id="<%= stock.getImage_url() %>" data-prod-id="<%= stock.getProd_id() %>"
-                    data-reorderlevel-id="<%= stock.getReorderlevel() %>" data-stock-id="<%= stock.getProd_stock() %>"
-                    data-mrp-id="<%= stock.getProd_mrp() %>">UPDATE</button>
+                <button  id="edit-button" class="btn btn-success" data-gstc-id="<%= stock.getHsnCode() %>" 
+                    data-imageurl-id="<%= stock.getImageUrl() %>" data-prod-id="<%= stock.getId() %>"
+                    data-reorderlevel-id="<%= stock.getReorderLevel() %>" data-stock-id="<%= stock.getStock() %>"
+                    data-mrp-id="<%= stock.getMrp() %>">UPDATE</button>
             </td>
         </tr>
       

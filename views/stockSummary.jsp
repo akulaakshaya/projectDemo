@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="eStoreProduct.model.stockSummaryModel,java.util.List" %>
+<%@ page import="eStoreProduct.model.admin.output.stockSummaryModel,java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,22 +35,22 @@
          <% List<stockSummaryModel> stocks=(List<stockSummaryModel>)request.getAttribute("stocks"); %>
             <% for (stockSummaryModel stock : stocks) { %>
             <tr>
-                <td><%= stock.getProd_id() %></td>
-                <td><%= stock.getProd_title() %></td>
-                <td><%= stock.getProd_prct_id() %></td>
-                <td><%= stock.getProd_gstc_id() %></td>
-                <td><%= stock.getProd_brand() %></td>
-                <td><%= stock.getImage_url() %></td>
-                <td><%= stock.getProd_desc() %></td>
-                <td><%= stock.getReorderlevel() %></td>
-                <td><%= stock.getPrct_title() %></td>
+                <td><%= stock.getId() %></td>
+                <td><%= stock.getTitle()%></td>
+                <td><%= stock.getProductCategory() %></td>
+                <td><%= stock.getHsnCode() %></td>
+                <td><%= stock.getBrand() %></td>
+                <td><%= stock.getImageUrl() %></td>
+                <td><%= stock.getDescription() %></td>
+                <td><%= stock.getReorderLevel() %></td>
+                <td><%= stock.getPrct_title()%></td>
                 <td><%= stock.getSgst() %></td>
                 <td><%= stock.getIgst() %></td>
                 <td><%= stock.getCgst() %></td>
                 <td><%= stock.getGst() %></td>
-                <td><%= stock.getProd_price() %></td>
-                <td><%= stock.getProd_stock() %></td>
-                <td><%= stock.getProd_mrp() %></td>
+                <td><%= stock.getPrice() %></td>
+                <td><%= stock.getStock() %></td>
+                <td><%= stock.getMrp() %></td>
             </tr>
             <% } %>
         </tbody>

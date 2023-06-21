@@ -77,10 +77,10 @@
 <body>
     <form>
         <label for="email">New Email:</label>
-        <input type="text" id="email" placeholder="Enter your new email">
+        <input type="text" id="email" placeholder="Enter your new email" name="email">
 
         <label for="pwd">Password:</label>
-        <input type="text" id="pwd" placeholder="Enter your password">
+        <input type="text" id="pwd" placeholder="Enter your password" name="pwd">
 
         <input type='button' onclick="getemail()" value="Submit">
     </form>

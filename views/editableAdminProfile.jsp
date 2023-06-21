@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-<%@ page import="eStoreProduct.model.adminModel,java.util.List" %>
+<%@ page import="eStoreProduct.model.admin.entities.adminModel,java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,9 +104,9 @@ console.log("in viewing  shipped Orders");
                     <input id="adminRole" type="text" class="form-control" name="designation" value="<%= adminRole %>" >
                 </p>
                 
-                <p class="card-text">Password:
+               <%--  <p class="card-text">Password:
                     <input id="adminPassword" type="text" class="form-control" name="password" value="<%= password %>" >
-                </p>
+                </p> --%>
                 
             </div>
         </div>

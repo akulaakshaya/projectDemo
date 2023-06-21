@@ -395,12 +395,12 @@
 	        url: "updateMasterEntryTables",
 	        method: 'GET',
 	        data: {
-	        	prod_gstc_id: prod_gstc_id,
-	        	image_url: image_url,
-	            prod_id: prod_id,
-	            reorderlevel: reorderlevel,
-	            prod_stock: prod_stock,
-	            prod_mrp: prod_mrp
+	        	hsnCode: prod_gstc_id,
+	        	imageUrl: image_url,
+	        	id: prod_id,
+	            reorderLevel: reorderlevel,
+	            stock: prod_stock,
+	           	mrp: prod_mrp
 	        },
 	        success: function(response) {
 	            $('#content').html(response);

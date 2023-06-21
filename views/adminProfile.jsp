@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-<%@ page import="eStoreProduct.model.adminModel,java.util.List" %>
+<%@ page import="eStoreProduct.model.admin.entities.adminModel,java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>

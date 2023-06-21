@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="eStoreProduct.model.orderModel,java.util.List" %>
+<%@ page import="eStoreProduct.model.admin.entities.orderModel,java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>

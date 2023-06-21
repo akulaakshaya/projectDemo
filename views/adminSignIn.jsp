@@ -104,7 +104,7 @@
     <div class="box-2">
       <div class="adminlogin-form-container">
         <h1>Admin Sign In</h1>
-        <form action="adminSignOk" >
+        <form action="adminSignOk" method="POST" >
           <input type="email" placeholder="Email" name="email" class="input-field">
           <br><br>
           <input type="password" placeholder="Password" name="password" class="input-field">
