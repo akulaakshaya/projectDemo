@@ -3,7 +3,7 @@ package eStoreProduct.utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import eStoreProduct.DAO.ProdStockDAO;
+import eStoreProduct.DAO.admin.ProdStockDAO;
 
 @Component
 public class ProductStockPrice implements Comparable<ProductStockPrice> {
